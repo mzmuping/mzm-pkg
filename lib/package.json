@@ -1,16 +1,15 @@
 {
   "name": "mzm-sdk",
-  "version": "1.5.0",
+  "version": "1.7.0",
   "description": "常用js方法",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "browser": "lib/index.js",
   "scripts": {
-    "start": "node config/rollup.config.dev.ts",
     "dev": "rollup -c config/rollup.config.dev.ts --watch",
     "build": "npm run clean & rollup -c config/rollup.config.ts & npm run copy",
     "clean": "rm -rf ./lib",
-    "copy": "node script/cp.js",
+    "copy": "node scripts/cp.js",
     "yp": "node scripts/publish.js"
   },
   "author": "",
@@ -23,11 +22,13 @@
     "@babel/cli": "^7.18.9",
     "@babel/core": "^7.18.9",
     "@babel/preset-env": "^7.18.9",
+    "commander": "^9.4.0",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-typescript2": "^0.32.1",
+    "shelljs": "^0.8.5",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
