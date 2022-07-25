@@ -7,7 +7,7 @@ import typescript from "rollup-plugin-typescript2";
 const output = path.resolve(__dirname, "./../lib");
 const pkg = require("./../package.json");
 export default {
-  input: path.resolve(__dirname, "./../src/main.ts"),
+  input: path.resolve(__dirname, "./../src/index.ts"),
   output: [
     {
       file: path.join(output, "index.esm.js"),
@@ -15,6 +15,7 @@ export default {
       format: "esm", // 将软件包保存为 ES 模块文件，在现代浏览器中可以通过 <script type=module> 标签引入
       name: pkg.name,
       exports: "auto",
+      indent: false,
     },
     {
       file: path.join(output, "index.cjs"),
@@ -28,12 +29,12 @@ export default {
       name: pkg.name,
       exports: "auto",
     },
-    {
-      file: path.join(output, "index.js"),
-      format: "umd", //通用模块定义，以amd，cjs 和 iife 为一体
-      name: pkg.name,
-      exports: "auto",
-    },
+    // {
+    //   file: path.join(output, "index.js"),
+    //   format: "umd", //通用模块定义，以amd，cjs 和 iife 为一体
+    //   name: pkg.name,
+    //   exports: "auto",
+    // },
   ],
   plugins: [
     json(),

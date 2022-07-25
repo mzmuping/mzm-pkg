@@ -7,7 +7,18 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="../lib/index.esm.js"></script>
-    <script></script>
+    <script type="module">
+      import { Tools } from "../../index.esm.js";
+      console.log(Tools);
+      let obj = {
+        a: undefined,
+        b: 1,
+        c: null,
+        d: "",
+        e: NaN,
+      };
+
+      console.log(Tools.deleteEmpty(obj));
+    </script>
   </body>
 </html>
