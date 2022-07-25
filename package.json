@@ -1,12 +1,11 @@
 {
   "name": "mzm-sdk",
-  "version": "1.6.1",
+  "version": "1.7.0",
   "description": "常用js方法",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
   "browser": "lib/index.js",
   "scripts": {
-    "start": "node config/rollup.config.dev.ts",
     "dev": "rollup -c config/rollup.config.dev.ts --watch",
     "build": "npm run clean & rollup -c config/rollup.config.ts & npm run copy",
     "clean": "rm -rf ./lib",
