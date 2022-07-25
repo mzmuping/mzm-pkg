@@ -23,8 +23,8 @@ export default {
       exports: "auto",
     },
     {
-      file: path.join(output, "index.amd.js"),
-      format: "amd", // 异步模块定义，用于像RequireJS这样的模块加载器
+      file: path.join(output, "index.umd.js"),
+      format: "umd", // 异步模块定义，用于像RequireJS这样的模块加载器
       // name: pkg.name,
       exports: "auto",
     },
