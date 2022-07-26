@@ -1,4 +1,8 @@
-define(['exports'], (function (exports) { 'use strict';
+(function (global, factory) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.MyBundle = {}));
+})(this, (function (exports) { 'use strict';
 
   /**
    * 判断字符串是否是十六进制的颜色值
