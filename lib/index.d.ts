@@ -10,4 +10,9 @@ interface ObjectProps {
 }
 declare const deleteEmpty: (object: ObjectProps) => ObjectProps;
 
-export { deleteEmpty, isColor };
+declare class Anmal {
+    name: any;
+    constructor(name: any);
+}
+
+export { Anmal, deleteEmpty, isColor };

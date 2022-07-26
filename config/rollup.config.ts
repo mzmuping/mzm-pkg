@@ -5,6 +5,8 @@ import commonjs from "rollup-plugin-commonjs";
 import babel from "rollup-plugin-babel";
 import typescript from "rollup-plugin-typescript2";
 import dts from "rollup-plugin-dts";
+import { terser } from "rollup-plugin-terser";
+import cleaner from "rollup-plugin-cleaner";
 import { builtinModules } from "module";
 const output = path.resolve(__dirname, "./../lib");
 const pkg = require("./../package.json");
@@ -26,6 +28,7 @@ const config = [
         format: "cjs", // CommonJS，适用于 Node 和 Browserify/Webpack
         name: pkg.name,
         exports: "auto",
+        plugins: [terser()], //单个压缩
       },
       {
         file: path.join(output, "index.amd.js"),
@@ -40,14 +43,14 @@ const config = [
         exports: "auto",
       },
       {
-        file: path.join(output, "index.js"),
+        file: path.join(output, "index.iife.js"),
         format: "iife", // 一个自动执行的功能，适合作为<script>标签
         name: "MyBundle", //全局变量名，代表你的 iife/umd 包
         exports: "auto",
       },
     ],
     plugins: [
-      json(),
+      json(), //
       typescript(),
       resolve({
         // 将自定义选项传递给解析插件
@@ -58,6 +61,9 @@ const config = [
       commonjs(), //
       babel({
         exclude: "node_modules/**", // 只编译我们的源代码
+      }),
+      cleaner({
+        targets: ["./lib/"],
       }),
     ],
     external, //指出应将哪些模块视为外部模块

@@ -4,7 +4,6 @@
   "description": "常用js方法",
   "main": "lib/index.cjs.js",
   "module": "lib/index.esm.js",
-  "browser": "lib/index.iife.js",
   "scripts": {
     "dev": "rollup -c config/rollup.config.dev.ts --watch",
     "build": "npm run clean & rollup -c config/rollup.config.ts & npm run copy",
