@@ -2,7 +2,9 @@ const path = require("path");
 import json from "rollup-plugin-json";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
-import babel from "rollup-plugin-babel";
+const { babel } = require("@rollup/plugin-babel");
+
+import { DEFAULT_EXTENSIONS } from "@babel/core";
 import typescript from "rollup-plugin-typescript2";
 import dts from "rollup-plugin-dts";
 import { terser } from "rollup-plugin-terser";
@@ -11,6 +13,17 @@ import { builtinModules } from "module";
 const output = path.resolve(__dirname, "./../lib");
 const pkg = require("./../package.json");
 const external = Object.keys(pkg.dependencies || {}).concat(builtinModules);
+const babelOptions = {
+  presets: ["@babel/preset-env"],
+  plugins: ["@babel/plugin-transform-runtime"],
+
+  // 编译库使用
+  babelHelpers: "runtime",
+  // 只转换源代码，不转换外部依赖
+  exclude: "node_modules/**",
+  // babel 默认不支持 ts 需要手动添加
+  extensions: [...DEFAULT_EXTENSIONS, ".ts"],
+};
 const config = [
   {
     input: path.resolve(__dirname, "./../src/index.ts"),
@@ -59,9 +72,7 @@ const config = [
         },
       }),
       commonjs(), //
-      babel({
-        exclude: "node_modules/**", // 只编译我们的源代码
-      }),
+      babel(babelOptions),
       cleaner({
         targets: ["./lib/"],
       }),
