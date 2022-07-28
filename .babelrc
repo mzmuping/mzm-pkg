@@ -1,23 +1,24 @@
 {
-    "presets": [
-      [
-        "@babel/preset-env",
-        // {
-        //   "targets": {
-        //     "edge": "17",
-        //     "firefox": "60",
-        //     "chrome": "67",
-        //     "safari": "11.1"
-        //   },
-        //   "useBuiltIns": "usage",
-        //   "corejs": "3",//
-          // "es2015": {
-          //   //否则 Babel 会在 Rollup 有机会做处理之前，将我们的模块转成 CommonJS ，导致 Rollup 的一些处理失败
-          //   "modules": false
-          // }
-        // },
-       
-      ]
-    ],
-    "plugins": []
-  }
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        /* Babel 会在 Rollup 有机会做处理之前，将我们的模块转成 CommonJS，导致 Rollup 的一些处理失败 */
+        "modules": false
+      }
+    ]
+  ],
+  "plugins": [
+    [
+      // 与 babelHelpers: 'runtime' 配合使用
+      "@babel/plugin-transform-runtime",
+      {
+        "absoluteRuntime": false, // boolean或者string，默认为false。
+        "corejs": 3, // false, 2,3或{ version: 2 | 3, proposals: boolean }, 默认为false, 对promis ,Set ,Map ,Symbol d等api
+        "helpers": true, // boolean, 默认为true.切换内联的 Babel 助手（classCallCheck,extends等）是否替换为对 的调用moduleName
+        "regenerator": true // 切换生成器函数是否转换为使用不污染全局范围的再生器运行时。默认为true
+        // version: '7.0.0-beta.0',
+      }
+    ]
+  ]
+}

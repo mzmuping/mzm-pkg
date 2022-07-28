@@ -8,6 +8,10 @@
 ```js
 yarn dev
 ```
+### 测试
+```js
+yarn test
+```
 ### 打包
 ```js
 yarn build
